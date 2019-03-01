@@ -7,4 +7,4 @@
 [About Keypair ](/roles/keypair/readme.md)
 [About EC2 ](/roles/ec2/readme.md)
 
-[diagram](aws-dumb-diagram.svg)
+![diagram](aws-dumb-diagram.svg)
