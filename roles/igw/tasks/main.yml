@@ -1,0 +1,23 @@
+---
+# tasks file for igw
+- name: Create Gateway
+  ec2_vpc_igw:
+    vpc_id: "{{ aws_vpc_id }}"
+    region: "{{ aws_region }}"
+    state: present
+    tags:
+      Name: "{{ aws_igw_name }}"
+  register: igw
+
+# create routing table for the aboove gateway
+- name: Route IGW
+  ec2_vpc_route_table:
+    vpc_id: "{{ aws_vpc_id }}"
+    region: "{{ aws_region }}"
+    subnets:
+      - "{{ subnet.subnet.id }}"
+    routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw.gateway_id }}"
+    tags:
+      Name: "{{ aws_route_name }}"

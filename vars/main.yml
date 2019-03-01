@@ -1,0 +1,33 @@
+---
+# vars file for aws-vpc
+aws_region: "us-east-1"
+
+#VPC
+aws_vpc_cidr: 10.10.0.0/24
+aws_vpc_name: "Ansible VPC"
+
+#Subnet
+aws_subnet_name: "Ansible subnet"
+aws_subnet_cidr: 10.10.0.0/26
+
+#Gateway Name
+aws_igw_name: "Traffic GW"
+aws_security_group_name: "Ansible SG"
+
+#Routing table
+aws_route_name: "Public Access"
+
+#Tags
+aws_ec2_tag: "Webserver"
+
+#Path to save key pair
+aws_ec2_key_directory: ~/.ssh/aws/
+aws_keypair_name: "development-key"
+
+#ami id 
+aws_ami_id: ami-0ac019f4fcb7cb7e6 #ubuntu 16.04
+aws_instance_type: t2.micro
+aws_instance_count: 1
+
+#Key vars
+ec2_key_directory: "~/.ssh/aws/"

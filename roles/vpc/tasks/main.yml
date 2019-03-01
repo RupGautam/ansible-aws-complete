@@ -1,0 +1,27 @@
+---
+# tasks file for aws-vpc
+- name: Create VPC
+  ec2_vpc_net:
+    name: "{{ aws_vpc_name }}"
+    cidr_block: "{{ aws_vpc_cidr }}"
+    region: "{{ aws_region }}"
+    state: present
+  register: vpc
+
+# set vpc.id variable  
+- name: Set VPC ID in the varible 
+  set_fact:
+    aws_vpc_id: "{{ vpc.vpc.id }}"
+
+# Associate subnet to recently created vpc
+- name: Associate subnet to VPC
+  ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{ aws_vpc_id }}"
+    region: "{{ aws_region }}"
+    cidr: "{{ aws_subnet_cidr }}"
+    map_public: yes #very important
+    resource_tags:
+      Name: "{{ aws_subnet_name }}"
+  register: subnet
+

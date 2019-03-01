@@ -1,0 +1,13 @@
+---
+# tasks file for keypair
+- name: Create a new EC2 keypair
+  ec2_key:
+    # aws_access_key: "{{ aws_access_key }}"
+    # aws_secret_key: "{{ aws_secret_key }}"
+    name: ansible_keypair
+    region: "{{ aws_region }}"
+  register: keypair
+
+- name: Copy EC2 private key locally
+  copy: content= "{{ keypair.key.private_key }}" dest={{ ec2_key_directory }}key.ppk
+  when: keypair.changed == true

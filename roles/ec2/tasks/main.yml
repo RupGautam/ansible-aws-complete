@@ -1,0 +1,15 @@
+---
+# tasks file for ec2
+- name: Create EC2 Instances 
+  ec2:
+    image: "{{ aws_ami_id }}"
+    wait: yes
+    instance_type: "{{ aws_instance_type }}"
+    region: "{{ aws_region }}"
+    group_id: "{{ security_group.group_id }}"
+    vpc_subnet_id: "{{ subnet.subnet.id }}"
+    key_name: "{{ keypair.key.name }}"
+    count_tag:
+      Name: Ansibletest
+    exact_count: "{{ aws_instance_count }}"
+  

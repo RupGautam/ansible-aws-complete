@@ -1,0 +1,18 @@
+---
+# tasks file for sg
+- name: Create Security Group 
+  ec2_group:
+    name: Web based DMZ
+    description: DMZ SG
+    vpc_id: "{{ aws_vpc_id }}"
+    region: "{{ aws_region }}"
+    rules:
+      - proto: tcp
+        ports:
+        - 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        ports:
+        - 22
+        cidr_ip: 0.0.0.0/0
+  register: security_group
