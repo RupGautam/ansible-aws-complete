@@ -1,11 +1,11 @@
 ---
-- name: Network Getting Started First Playbook
+- name: Ansible AWS complete playbook
   gather_facts: false
   hosts: localhost
   vars_files:
     - vars/main.yml
   roles:
-    - vpc
+    - vpc 
     - igw
     - sg
     - keypair
