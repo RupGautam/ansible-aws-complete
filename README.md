@@ -6,3 +6,5 @@
 [About Security Group ](/roles/sg/readme.md)
 [About Keypair ](/roles/keypair/readme.md)
 [About EC2 ](/roles/ec2/readme.md)
+
+[diagram](aws-dumb-diagram.svg)
